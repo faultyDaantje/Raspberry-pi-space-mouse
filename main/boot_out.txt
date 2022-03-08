@@ -1,0 +1,2 @@
+Adafruit CircuitPython 7.2.0 on 2022-02-24; Pimoroni Tiny 2040 (8MB) with rp2040
+Board ID:pimoroni_tiny2040
