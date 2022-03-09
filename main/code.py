@@ -15,21 +15,23 @@ from adafruit_hid.keycode import Keycode
 import adafruit_ssd1306
 
 
-
+#this encoder is used to control the sensivity of the spacemouse
 encodersens = rotaryio.IncrementalEncoder(board.GP5, board.GP4)
 last_sens = 0
 
 kbd = Keyboard(usb_hid.devices)
 mouse = Mouse(usb_hid.devices)
 
+#x and y are switched on purpose, because of the way the spacemouse is placed.
 y_axis = analogio.AnalogIn(board.A3)
 x_axis = analogio.AnalogIn(board.A0)
 
+#button inside the joystick works as a mouse click
 Button = digitalio.DigitalInOut(board.GP0)
 Button.direction = digitalio.Direction.INPUT
 Button.pull = digitalio.Pull.UP
 
-
+#button to choose what you want to change the sensitivity of
 senstoggler = digitalio.DigitalInOut(board.GP1)
 senstoggler.direction = digitalio.Direction.INPUT
 senstoggler.pull = digitalio.Pull.UP
@@ -44,6 +46,7 @@ Undo = digitalio.DigitalInOut(board.A1)
 Undo.direction = digitalio.Direction.INPUT
 Undo.pull = digitalio.Pull.UP
 
+#encoder on top of the joystick, for zooming in and out
 encoder = rotaryio.IncrementalEncoder(board.GP7, board.GP6)
 last_position = 0
 
@@ -57,6 +60,7 @@ pot_min = 0.00
 pot_max = 4.99
 step = (pot_max - pot_min) / 40.0
 
+#for updating the display
 def display_reset(oled):
     oled.fill(0)
     oled.text('sensitivity:', 0, 0, 1)
